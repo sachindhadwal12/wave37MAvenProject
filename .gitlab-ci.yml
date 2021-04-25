@@ -16,5 +16,5 @@ stages:
 maven_job:
   stage: build
   script:
-    - mvn clean package
+    - mvn install -B --fail-at-end -B -Dmaven.test.redirectTestOutputToFile -Dmatsim.preferLocalDtds=true
 
