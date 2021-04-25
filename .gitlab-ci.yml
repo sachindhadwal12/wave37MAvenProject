@@ -18,3 +18,7 @@ maven_job:
   script:
     - mvn install -B --fail-at-end -B -Dmaven.test.redirectTestOutputToFile -Dmatsim.preferLocalDtds=true
 
+artifacts:
+    paths:
+      - /target/*.jar
+      - .m2/repository
