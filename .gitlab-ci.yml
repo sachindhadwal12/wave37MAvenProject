@@ -18,8 +18,3 @@ maven_job:
   script:
     - mvn clean package
 
-  artifacts:
-    paths:
-      - /target/*.jar
-      - .m2/repository
-
