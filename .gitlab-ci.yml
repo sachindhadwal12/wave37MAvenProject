@@ -1,4 +1,25 @@
-image: maven:3-jdk-7
+image: maven:3-jdk-11
+before_script:
+  - apt-get update -qq && apt-get install
 
-build:
-  script: "mvn install -B --fail-at-end -B -Dmaven.test.redirectTestOutputToFile -Dmatsim.preferLocalDtds=true"
+cache:
+  key: "maven3"
+  paths:
+    - .m2/repository
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+stages:
+  - build
+
+maven_job:
+  stage: build
+  script:
+    - mvn clean package
+
+  artifacts:
+    paths:
+      - /target/*.jar
+      - .m2/repository
+
